@@ -1,0 +1,68 @@
+server:
+                  port: 8100
+#    connection-timeout: 30000
+#    context-path:
+
+spring:
+    application:
+        name: x-service
+    datasource:
+        master:
+            jdbcUrl: jdbc:mysql://172.16.10.22:63306/x?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+            username: moer_user
+            password: moerJR6k7h
+            driverClassName: com.mysql.jdbc.Driver
+            max-active: 3000
+            max-idle: 100
+            max-wait: 3000
+            test-on-borrow: true
+            time-between-eviction-runs-millis: 30000
+            min-evictable-idle-time-millis: 30000
+    freemarker:
+        request-context-attribute: req  #req访问request
+        suffix: .html
+        content-type: text/html
+        enabled: true
+        cache: false
+        check-template-location: true
+        template-loader-path: classpath:/templates
+        charset: UTF-8
+        settings:
+            number_format: '0.##'   #数字格式化，无小数点
+logging:
+    level:
+        com.x.*: debug
+    #path: C\:\\Users\\zwj\\Desktop
+    path: /data/logs/x
+    file: x.log
+    config: classpath:logback-spring.xml
+
+x:
+    redis:
+        common: 
+            maxIdle: 400
+            maxActive: 3000
+            timeBetweenEvictionRunsMillis: 30000
+            minEvictableIdleTimeMillis: 30000
+            testOnBorrow: true
+            timeout: 2
+        master:
+            #database: 0
+            host: 172.16.10.22
+            #host: 127.0.0.1
+            #port: 58201
+            port: 6379
+
+common:
+    wx:
+        appId: wx200e20d0582b9997
+        appSecret: 8b2a882117a7b4d3134c86044ab44f51
+        partnerId: xxxx
+        sslPath: xxx
+        appKey: xxx
+        wxpayUrl: https://api.mch.weixin.qq.com/pay/unifiedorder
+        elasticSearchHost: http://127.0.0.1:9200/
+    socket:
+        host: 0.0.0.0
+        port: 2406
+        useEpoll: 0
